@@ -1,0 +1,116 @@
+﻿@page "/trackpages/trackupdatepage/{Id:int}"
+
+@inject ITrackServices _trackServices
+@inject IGenreServices _genreServices
+@inject IAlbumServices _albumServices
+@inject NavigationManager _nav
+@inject IJSRuntime js
+<h3>TrackUpdates</h3>
+
+<div>
+    <EditForm Model="@track" OnValidSubmit="@UpdateTrack">
+        <DataAnnotationsValidator />
+        <div>
+            <div>
+                <div class="form-group col-md-6">
+                    <label for="TrackTitle"> Track Title </label>
+                    <InputText form="TrackTitle" class="form-control" @bind-Value="@track.Title" />
+                    <ValidationMessage For="@(() => track.Title)" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="TrackRating"> Track Rating </label>
+                        <InputNumber form="TrackRating" type="number" class="form-control" min="1" max="5" @bind-Value="@track.Rating" />
+                    </div>
+                    <ValidationMessage For="@(() => track.Rating)" />
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="TrackLength">Track Length </label>
+                        <InputNumber form="TrackLength" type="number" class="form-control" min="0" @bind-Value="@track.Length" />
+
+                    </div>
+                    <ValidationMessage For="@(() => track.Length)" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group" style="display:inline-flex">
+                        <label style="padding-top:6px" for="TrackAlbum">Track Album :</label>
+                        <select style="width:150px" form="TrackAlbum" class="form-control" @bind="@track.AlbumId">
+                            <option>Select</option>
+                            @foreach (var album in albums)
+                            {
+                                <option value="@album.Id">@album.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <ValidationMessage For="@(() => track.AlbumId)" />
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group" style="display:inline-flex">
+                        <label style="padding-top:6px" for="TrackGenre">Track Genre :</label>
+                        <select style="width:150px" form="TrackGenre" class="form-control" @bind="@track.GenreId">
+                            <option>Select</option>
+                            @foreach (var genre in genres)
+                            {
+                                <option value="@genre.Id">@genre.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <ValidationMessage For="@(() => track.GenreId)" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn" style="background-color:#400444; color:white" @onclick="@(()=>Cancel(Id))">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    ViewTrack track = new ViewTrack();
+    UpdateTrack trackUpdate = new UpdateTrack();
+    IEnumerable<ViewAllGenre> genres = new List<ViewAllGenre>();
+    IEnumerable<ViewAllAlbum> albums = new List<ViewAllAlbum>();
+    protected override async Task OnInitializedAsync()
+    {
+        track = await _trackServices.GetTrackAsync(Id);
+        genres = (await _genreServices.GetAllGenreAsync());
+        albums = (await _albumServices.GetAllAlbumAsync());
+    }
+    protected async void UpdateTrack()
+    {
+        var uId = track.Id;
+        trackUpdate.Id = track.Id;
+        trackUpdate.Title = track.Title;
+        trackUpdate.Rating = track.Rating;
+        trackUpdate.Length = track.Length;
+        trackUpdate.AlbumId = track.AlbumId;
+        trackUpdate.GenreId = track.GenreId;
+        var response = await _trackServices.UpdateTrackAsync(trackUpdate);
+        if (response)
+        {
+            await js.InvokeVoidAsync("updated");
+            _nav.NavigateTo($"/trackpages/trackviewpage/{uId}");
+        }
+    }
+    protected void Cancel(int id)
+    {
+        _nav.NavigateTo($"/trackpages/trackviewpage/{id}");
+    }
+
+}

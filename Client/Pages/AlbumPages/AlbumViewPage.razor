@@ -1,0 +1,65 @@
+﻿@page "/albumpages/albumviewpage/{Id:int}"
+
+@inject IAlbumServices _albumServices
+@inject IArtistServices _artistServices
+@inject IJSRuntime js
+@inject NavigationManager _nav
+
+<h3>Album Details</h3>
+<div class="row m-3">
+    <div class="card" style="width:fit-content">
+        <div class="card-header text-center"> 
+            <h4>@album.Title</h4>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>Artist : @artist.Name</li>
+                <li>Tracks :
+                    <ul>
+                        @foreach(var track in tracks)
+                        {
+                            <li>@track.Title</li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer text-center">
+            <button type="button" class="btn" style="background-color:#400444; color:white;" @onclick="@GoBackToalbums">Back</button>
+            <button type="button" class ="btn btn-primary"  @onclick="@(()=>Updatealbum(album.Id))">Update</button>
+            <button type="button" class="btn" style="background-color:red; color:white;" @onclick="@Detelealbum">Delete</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    ViewArtist artist = new ViewArtist();
+    ViewAlbum album = new ViewAlbum();
+    ICollection<ViewAllTrack> tracks = new List<ViewAllTrack>();
+    protected override async Task OnInitializedAsync()
+    {
+        album = await _albumServices.GetAlbumAsync(Id);
+        tracks = album.Tracks;
+        artist = await _artistServices.GetArtistAsync(album.ArtistId);
+    }
+    void GoBackToalbums()
+    {
+        _nav.NavigateTo("/albumpages/albumviewallpage");
+    }
+    async void Detelealbum()
+    {
+        var conform = await js.InvokeAsync<bool>("deleteAlert");
+        if (conform)
+        {
+            var deleted = await _albumServices.DeleteAlbumAsync(album.Id);
+            if (deleted) await js.InvokeVoidAsync("deleted");
+            _nav.NavigateTo("/albumpages/albumviewallpage");
+        }
+    }
+    void Updatealbum(int id)
+    {
+        _nav.NavigateTo($"/albumpages/albumupdatepage/{id}");
+    }
+}

@@ -1,0 +1,63 @@
+﻿@page "/artistpages/artistviewallpage"
+
+@inject NavigationManager _nav
+@inject IArtistServices _artistServices
+<div>
+    <div style="display:inline-flex">
+        <div style="margin-right:80px;">
+            <h3>ArtistsList</h3>
+        </div>
+        <div>
+            <input type="button" class="btn btn-primary" @onclick="@Addartist" value="Add Artist" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var artist in artists)
+                {
+
+                    <tr class="change" style="cursor:pointer" onclick="@(()=>GoToartistDetails(artist.Id))">
+                        <td style="color:blueviolet">@artist.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<style>
+    .change:hover {
+        transform: scale(1.05,1.05);
+        transition-duration: 500ms;
+        transition-timing-function: ease-out;
+    }
+
+    .change {
+        transform: scale(1,1);
+        transition-duration: 500ms;
+        transition-timing-function: ease-out;
+    }
+</style>
+
+@code {
+    List<ViewAllArtist> artists = new List<ViewAllArtist>();
+    protected override async Task OnInitializedAsync()
+    {
+        artists = (await _artistServices.GetAllArtistAsync()).ToList();
+    }
+    protected void Addartist()
+    {
+        _nav.NavigateTo("/artistpages/artistcreatepage");
+    }
+    protected void GoToartistDetails(int id)
+    {
+        _nav.NavigateTo($"/artistpages/artistviewpage/{id}");
+    }
+}

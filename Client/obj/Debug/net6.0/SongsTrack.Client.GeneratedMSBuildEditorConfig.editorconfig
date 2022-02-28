@@ -1,0 +1,107 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = true
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = SongsTrack.Client
+build_property.RootNamespace = SongsTrack.Client
+build_property.ProjectDir = C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Client\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Client
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/AlbumPages/AlbumCreatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxidW1QYWdlc1xBbGJ1bUNyZWF0ZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/AlbumPages/AlbumUpdatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxidW1QYWdlc1xBbGJ1bVVwZGF0ZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/AlbumPages/AlbumViewAllPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxidW1QYWdlc1xBbGJ1bVZpZXdBbGxQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/AlbumPages/AlbumViewPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxidW1QYWdlc1xBbGJ1bVZpZXdQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/ArtistPages/ArtistCreatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJ0aXN0UGFnZXNcQXJ0aXN0Q3JlYXRlUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/ArtistPages/ArtistViewPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJ0aXN0UGFnZXNcQXJ0aXN0Vmlld1BhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/ArtistPages/ArtsitUpdatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJ0aXN0UGFnZXNcQXJ0c2l0VXBkYXRlUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/ArtistPages/ArtsitViewAllPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJ0aXN0UGFnZXNcQXJ0c2l0Vmlld0FsbFBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/GenrePages/GenreCreatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VucmVQYWdlc1xHZW5yZUNyZWF0ZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/GenrePages/GenreUpdatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VucmVQYWdlc1xHZW5yZVVwZGF0ZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/GenrePages/GenreViewAllPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VucmVQYWdlc1xHZW5yZVZpZXdBbGxQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/GenrePages/GenreViewPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VucmVQYWdlc1xHZW5yZVZpZXdQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/TrackPages/TrackCreatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhY2tQYWdlc1xUcmFja0NyZWF0ZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/TrackPages/TrackUpdatePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhY2tQYWdlc1xUcmFja1VwZGF0ZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/TrackPages/TrackViewAllPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhY2tQYWdlc1xUcmFja1ZpZXdBbGxQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Pages/TrackPages/TrackViewPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhY2tQYWdlc1xUcmFja1ZpZXdQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-x5xwd168li
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-d14hg0xjqk

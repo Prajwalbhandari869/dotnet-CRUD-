@@ -1,0 +1,70 @@
+﻿@page "/genrepages/genreviewpage/{Id:int}"
+
+
+@inject IGenreServices _genreServices
+@inject IArtistServices _artistServices
+@inject IJSRuntime js
+@inject NavigationManager _nav
+
+<h3>GenreDetails</h3>
+<div class="row m-3">
+    <div class="card" style="width:fit-content">
+        <div class="card-header text-center">
+            <h4>@genre.Name</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-primary ">
+                <thead>
+                    <tr>
+                        <th>Track</th>
+                        <th>Album</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var track in tracks)
+                    {
+                        <tr>
+                            <td>@track.Title</td>
+                            <td>@track.AlbumTitle</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center">
+            <button type="button" class="btn" style="background-color:#400444; color:white;" @onclick="@GoBackToGenres">Back</button>
+            <button type="button" class="btn btn-primary" @onclick="@(()=>UpdateGenre(genre.Id))">Update</button>
+            <button type="button" class="btn" style="background-color:red; color:white;" @onclick="@DeteleGenre">Delete</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    ViewGenre genre = new ViewGenre();
+    ICollection<ViewAllTrack> tracks = new List<ViewAllTrack>();
+    protected override async Task OnInitializedAsync()
+    {
+        genre = await _genreServices.GetGenreAsync(Id);
+        tracks = genre.Tracks;
+    }
+    void GoBackToGenres()
+    {
+        _nav.NavigateTo("/genrepages/genreviewallpage");
+    }
+    async void DeteleGenre()
+    {
+        var conform = await js.InvokeAsync<bool>("deleteAlert");
+        if (conform)
+        {
+            var deleted = await _genreServices.DeleteGenreAsync(genre.Id);
+            if (deleted) await js.InvokeVoidAsync("deleted");
+            _nav.NavigateTo("/genrepages/genreviewallpage");
+        }
+    }
+    void UpdateGenre(int id)
+    {
+        _nav.NavigateTo($"/genrepages/genreupdatepage/{id}");
+    }
+}

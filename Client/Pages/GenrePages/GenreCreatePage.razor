@@ -1,0 +1,48 @@
+﻿@page "/genrepages/genrecreatepage"
+
+@inject IGenreServices _genreServices
+@inject NavigationManager _nav
+@inject IJSRuntime js
+<h3>GenreCreate</h3>
+<div>
+    <EditForm Model="@genreCreate" OnValidSubmit="@Create">
+        <DataAnnotationsValidator />
+        <div>
+            <div>
+                <div class="form-group col-md-6">
+                    <label for="genreTitle"> Genre Title </label>
+                    <InputText form="genreTitle" class="form-control" @bind-Value="@genreCreate.Name" />
+                    <ValidationMessage For="@(() => genreCreate.Name)" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> Create</button>
+                    <button type="button" class="btn" style="background-color:#400444; color:white" @onclick="@Cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+</div>
+
+@code {
+    CreateGenre genreCreate = new CreateGenre();
+
+    protected async void Create()
+    {
+        var id = await _genreServices.CreateGenreAsync(genreCreate);
+        if (id>0)
+        {
+            await js.InvokeAsync<bool>("createdAlert");
+            _nav.NavigateTo($"/genrepages/genreviewpage/{id}");
+        }        
+    }
+    protected void Cancel()
+    {
+        _nav.NavigateTo("/genrepages/genreviewallpage");
+    }
+}

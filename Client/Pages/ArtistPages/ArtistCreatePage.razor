@@ -1,0 +1,49 @@
+﻿@page "/artistpages/artistcreatepage"
+@inject IArtistServices _artistServices
+@inject IJSRuntime js
+@inject NavigationManager _nav
+
+<h3>ArtistCreate</h3>
+<div>
+    <EditForm Model="@artistCreate" OnValidSubmit="@Create">
+        <DataAnnotationsValidator />
+        <div>
+            <div>
+                <div class="form-group col-md-6">
+                    <label for="artistTitle"> Artist Title </label>
+                    <InputText form="artistTitle" class="form-control" @bind-Value="@artistCreate.Name" />
+                    <ValidationMessage For="@(() => artistCreate.Name)" />
+                </div>
+            </div>
+            <br />
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn" style="background-color:#400444; color:white" @onclick="@Cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+</div>
+
+@code {
+    CreateArtist artistCreate = new CreateArtist();
+
+    protected async void Create()
+    {
+        var id = await _artistServices.CreateArtistAsync(artistCreate);
+        if (id > 0)
+        {
+            await js.InvokeAsync<bool>("createdAlert");
+            _nav.NavigateTo($"/artistpages/artistviewpage/{id}");
+        }
+    }
+    protected void Cancel()
+    {
+        _nav.NavigateTo("/artistpages/artistviewallpage");
+    }
+}

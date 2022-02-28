@@ -1,0 +1,79 @@
+﻿@page "/albumpages/albumupdatepage/{Id:int}"
+
+@inject IAlbumServices _albumServices
+@inject IArtistServices _artistServices
+@inject NavigationManager _nav
+@inject IJSRuntime js
+<h3>Album Update</h3>
+
+<div>
+    <EditForm Model="@album" OnValidSubmit="@Updatealbum">
+        <DataAnnotationsValidator />
+        <div>
+            <div>
+                <div class="form-group col-md-6">
+                    <label for="albumTitle"> Album Title </label>
+                    <InputText form="albumTitle" class="form-control" @bind-Value="@album.Title" />
+                    <ValidationMessage For="@(() => album.Title)" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group" style="display:inline-flex">
+                        <label style="padding-top:6px" for="albumAlbum">album Album :</label>
+                        <select style="width:150px" form="albumAlbum" class="form-control" @bind="@album.ArtistId">
+                            <option>Select</option>
+                            @foreach (var artist in artists)
+                            {
+                                <option value="@artist.Id">@artist.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <ValidationMessage For="@(() => album.ArtistId)" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn" style="background-color:#400444; color:white" @onclick="@(()=>Cancel(Id))">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    ViewAlbum album = new ViewAlbum();
+    UpdateAlbum albumUpdate = new UpdateAlbum();
+    IEnumerable<ViewAllArtist> artists = new List<ViewAllArtist>();
+    protected override async Task OnInitializedAsync()
+    {
+        album = await _albumServices.GetAlbumAsync(Id);
+        artists = (await _artistServices.GetAllArtistAsync());
+    }
+    protected async void Updatealbum()
+    {
+        var uId = album.Id;
+        albumUpdate.Id = album.Id;
+        albumUpdate.Title = album.Title;
+        albumUpdate.ArtistId = album.ArtistId;
+        var response = await _albumServices.UpdateAlbumAsync(albumUpdate);
+        if (response)
+        {
+            await js.InvokeVoidAsync("updated");
+            _nav.NavigateTo($"/albumpages/albumviewpage/{uId}");
+        }
+    }
+    protected void Cancel(int id)
+    {
+        _nav.NavigateTo($"/albumpages/albumviewpage/{id}");
+    }
+
+}

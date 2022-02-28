@@ -1,0 +1,14 @@
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.csproj.AssemblyReference.cache
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.AssemblyInfoInputs.cache
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.AssemblyInfo.cs
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.csproj.CoreCompileInputs.cache
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\bin\Debug\net6.0\SongsTrack.Repository.deps.json
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\bin\Debug\net6.0\SongsTrack.Repository.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\bin\Debug\net6.0\SongsTrack.Repository.pdb
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\refint\SongsTrack.Repository.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.pdb
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\ref\SongsTrack.Repository.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\bin\Debug\net6.0\SongsTrack.Repository.runtimeconfig.json
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.genruntimeconfig.cache

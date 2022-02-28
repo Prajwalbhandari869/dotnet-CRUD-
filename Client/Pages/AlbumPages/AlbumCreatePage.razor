@@ -1,0 +1,72 @@
+﻿@page "/albumpages/albumcreatepage"
+
+
+@inject IAlbumServices _albumServices
+@inject IArtistServices _artistServices
+@inject NavigationManager _nav
+@inject IJSRuntime js
+<h3>AlbumCreate</h3>
+<div>
+    <EditForm Model="@albumCreate" OnValidSubmit="@Create">
+        <DataAnnotationsValidator />
+        <div>
+            <div>
+                <div class="form-group col-md-6">
+                    <label for="AlbumTitle"> Album Title </label>
+                    <InputText form="AlbumTitle" class="form-control" @bind-Value="@albumCreate.Title" />
+                    <ValidationMessage For="@(() => albumCreate.Title)" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group" style="display:inline-flex">
+                        <label style="padding-top:6px" for="albumAlbum">Album Artist :</label>
+                        <select style="width:150px" form="albumAlbum" class="form-control" @bind="@albumCreate.ArtistId" @bind:event="oninput">
+                            <option>Select</option>
+                            @foreach (var artist in artists)
+                            {
+                                <option value="@artist.Id">@artist.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <ValidationMessage For="@(() => albumCreate.ArtistId)" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> Create</button>
+                    <button type="button" class="btn" style="background-color:#400444; color:white" @onclick="@Cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+</div>
+
+@code {
+    CreateAlbum albumCreate = new CreateAlbum();
+    IEnumerable<ViewAllAlbum> albums = new List<ViewAllAlbum>();
+    IEnumerable<ViewAllArtist> artists = new List<ViewAllArtist>();
+    protected override async Task OnInitializedAsync()
+    {
+        artists = (await _artistServices.GetAllArtistAsync());
+    }
+
+    protected async void Create()
+    {
+        var id = await _albumServices.CreateAlbumAsync(albumCreate);
+        if (id>0)
+        {
+            await js.InvokeAsync<bool>("createdAlert");
+            _nav.NavigateTo($"/albumpages/albumviewpage/{id}");
+        }        
+    }
+    protected void Cancel()
+    {
+        _nav.NavigateTo("/albumpages/albumviewallpage");
+    }
+}

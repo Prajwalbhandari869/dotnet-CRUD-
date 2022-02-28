@@ -1,0 +1,60 @@
+﻿@page "/artistpages/artistupdatepage/{Id:int}"
+
+@inject IArtistServices _artistServices
+@inject IGenreServices _genreServices
+@inject IAlbumServices _albumServices
+@inject NavigationManager _nav
+@inject IJSRuntime js
+<h3>ArtistUpdate</h3>
+
+<div>
+    <EditForm Model="@artist" OnValidSubmit="@Updateartist">
+        <DataAnnotationsValidator />
+        <div>
+            <div>
+                <div class="form-group col-md-6">
+                    <label for="artistTitle"> artist Title </label>
+                    <InputText form="artistTitle" class="form-control" @bind-Value="@artist.Name" />
+                    <ValidationMessage For="@(() => artist.Name)" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn" style="background-color:#400444; color:white" @onclick="@(()=>Cancel(Id))">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    ViewArtist artist = new ViewArtist();
+    UpdateArtist artistUpdate = new UpdateArtist();
+    protected override async Task OnInitializedAsync()
+    {
+        artist = await _artistServices.GetArtistAsync(Id);
+    }
+    protected async void Updateartist()
+    {
+        var uId = artist.Id;
+        artistUpdate.Id = artist.Id;
+        artistUpdate.Name = artist.Name;
+        var response = await _artistServices.UpdateArtistAsync(artistUpdate);
+        if (response)
+        {
+            await js.InvokeVoidAsync("updated");
+            _nav.NavigateTo($"/artistpages/artistviewpage/{uId}");
+        }
+    }
+    protected void Cancel(int id)
+    {
+        _nav.NavigateTo($"/artistpages/artistviewpage/{id}");
+    }
+
+}

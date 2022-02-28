@@ -1,0 +1,12 @@
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\bin\Debug\net6.0\SongsTrack.Shared.deps.json
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\bin\Debug\net6.0\SongsTrack.Shared.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\bin\Debug\net6.0\SongsTrack.Shared.pdb
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\SongsTrack.Shared.csproj.AssemblyReference.cache
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\SongsTrack.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\SongsTrack.Shared.AssemblyInfoInputs.cache
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\SongsTrack.Shared.AssemblyInfo.cs
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\SongsTrack.Shared.csproj.CoreCompileInputs.cache
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\SongsTrack.Shared.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\refint\SongsTrack.Shared.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\SongsTrack.Shared.pdb
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Shared\obj\Debug\net6.0\ref\SongsTrack.Shared.dll

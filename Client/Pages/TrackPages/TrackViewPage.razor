@@ -1,0 +1,78 @@
+﻿@page "/trackpages/trackviewpage/{Id:int}"
+
+
+@inject ITrackServices _trackServices
+@inject IArtistServices _artistServices
+@inject IJSRuntime js
+@inject NavigationManager _nav
+
+<h3>TrackDetails</h3>
+<div class="row m-3">
+    <div class="card" style="width:fit-content">
+        <div class="card-header text-center">
+            <h4>@track.Title</h4>
+        </div>
+        <div class="card-body">
+            <ul>
+                @*<li>Rating : @track.Rating</li>*@
+                <li>Rating :
+                    @for (var i = 1; i <= 5; i++)
+                    {
+                        if (i <= count)
+                        {
+                            <i class="fa fa-star" style="color:blue"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-star" style="color:purple"></i>
+                        }
+                    }
+                </li>
+                <li>Length : @timeStr</li>
+                <li>Album  : @track.AlbumTitle</li>                
+                <li>Genre  : @track.GenreName</li>
+                <li>Artist : @artist.Name</li>
+            </ul>
+        </div>
+        <div class="card-footer text-center">
+            <button type="button" class="btn" style="background-color:#400444; color:white;" @onclick="@GoBackToTracks">Back</button>
+            <button type="button" class="btn btn-primary" @onclick="@(()=>UpdateTrack(track.Id))">Update</button>
+            <button type="button" class="btn" style="background-color:red; color:white;" @onclick="@DeteleTrack">Delete</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    ViewArtist artist = new ViewArtist();
+    ViewTrack track = new ViewTrack();
+    string timeStr;
+    int count = 0;
+    protected override async Task OnInitializedAsync()
+    {
+        track = await _trackServices.GetTrackAsync(Id);
+        artist = await _artistServices.GetArtistAsync(track.AlbumArtistId);
+        TimeSpan time = TimeSpan.FromSeconds(@track.Length);
+        timeStr = time.ToString();
+        count = track.Rating;
+    }
+    void GoBackToTracks()
+    {
+        _nav.NavigateTo("/trackpages/trackviewallpage");
+    }
+    async void DeteleTrack()
+    {
+        var conform = await js.InvokeAsync<bool>("deleteAlert");
+        if (conform)
+        {
+            var deleted = await _trackServices.DeleteTrackAsync(track.Id);
+            if (deleted) await js.InvokeVoidAsync("deleted");
+            _nav.NavigateTo("/trackpages/trackviewallpage");
+        }
+    }
+    void UpdateTrack(int id)
+    {
+        _nav.NavigateTo($"/trackpages/trackupdatepage/{id}");
+    }
+}

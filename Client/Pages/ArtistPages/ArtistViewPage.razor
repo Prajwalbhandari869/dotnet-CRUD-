@@ -1,0 +1,58 @@
+﻿@page "/artistpages/artistviewpage/{Id:int}"
+
+@inject IArtistServices _artistServices
+@inject NavigationManager _nav
+@inject IJSRuntime js
+
+<h3>ArtistDetails</h3>
+<div class="row m-3">
+    <div class="card" style="width:fit-content">
+        <div class="card-header text-center"> 
+            <h4>@artist.Name</h4>
+        </div>
+        <div class="card-body">
+            <h5>Albums</h5>
+            <ul>
+               @foreach(var album in albums)
+                {
+                    <li>@album.Title</li>
+                }
+            </ul>
+        </div>
+        <div class="card-footer text-center">
+            <button type="button" class="btn" style="background-color:#400444; color:white;" @onclick="@GoBackToartists">Back</button>
+            <button type="button" class ="btn btn-primary"  @onclick="@(()=>Updateartist(artist.Id))">Update</button>
+            <button type="button" class="btn" style="background-color:red; color:white;" @onclick="@Deteleartist">Delete</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    ViewArtist artist = new ViewArtist();
+    ICollection<ViewAllAlbum> albums = new List<ViewAllAlbum>();
+    protected override async Task OnInitializedAsync()
+    {
+        artist = await _artistServices.GetArtistAsync(Id);
+        albums = artist.Albums;
+    }
+    void GoBackToartists()
+    {
+        _nav.NavigateTo("/artistpages/artistviewallpage");
+    }
+    async void Deteleartist()
+    {
+        var conform = await js.InvokeAsync<bool>("deleteAlert");
+        if (conform)
+        {
+            var deleted = await _artistServices.DeleteArtistAsync(artist.Id);
+            if (deleted) await js.InvokeVoidAsync("deleted");
+            _nav.NavigateTo("/artistpages/artistviewallpage");
+        }
+    }
+    void Updateartist(int id)
+    {
+        _nav.NavigateTo($"/artistpages/artistupdatepage/{id}");
+    }
+}

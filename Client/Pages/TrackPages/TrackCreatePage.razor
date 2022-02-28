@@ -1,0 +1,106 @@
+﻿@page "/trackpages/trackcreatepage"
+
+
+@inject ITrackServices _trackServices
+@inject IGenreServices _genreServices
+@inject IAlbumServices _albumServices
+@inject NavigationManager _nav
+@inject IJSRuntime js
+<h3>TrackCreate</h3>
+<div>
+    <EditForm Model="@trackCreate" OnValidSubmit="@Create">
+        <DataAnnotationsValidator />
+        <div>
+            <div>
+                <div class="form-group col-md-6">
+                    <label for="TrackTitle"> Track Title </label>
+                    <InputText form="TrackTitle" class="form-control" @bind-Value="@trackCreate.Title" />
+                    <ValidationMessage For="@(() => trackCreate.Title)" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="TrackRating"> Track Rating </label>
+                        <InputNumber form="TrackRating" type="number" class="form-control" min="1" max="5" @bind-Value="@trackCreate.Rating" />
+                    </div>
+                    <ValidationMessage For="@(() => trackCreate.Rating)" />
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="TrackLength">Track Length </label>
+                        <InputNumber form="TrackLength" type="number" class="form-control" min="0" @bind-Value="@trackCreate.Length" />
+
+                    </div>
+                    <ValidationMessage For="@(() => trackCreate.Length)" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group" style="display:inline-flex">
+                        <label style="padding-top:6px" for="TrackAlbum">Track Album :</label>
+                        <select style="width:150px" form="TrackAlbum" class="form-control" @bind="@trackCreate.AlbumId" @bind:event="oninput">
+                            <option>Select</option>
+                            @foreach (var album in albums)
+                            {
+                                <option value="@album.Id">@album.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <ValidationMessage For="@(() => trackCreate.AlbumId)" />
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group" style="display:inline-flex">
+                        <label style="padding-top:6px" for="TrackGenre">Track Genre :</label>
+                        <select style="width:150px" form="TrackGenre" class="form-control" @bind="@trackCreate.GenreId" @bind:event="oninput">
+                            <option>Select</option>
+                            @foreach (var genre in genres)
+                            {
+                                <option value="@genre.Id">@genre.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <ValidationMessage For="@(() => trackCreate)" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> Create</button>
+                    <button type="button" class="btn" style="background-color:#400444; color:white" @onclick="@Cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </EditForm>
+</div>
+
+@code {
+    CreateTrack trackCreate = new CreateTrack();
+    IEnumerable<ViewAllGenre> genres = new List<ViewAllGenre>();
+    IEnumerable<ViewAllAlbum> albums = new List<ViewAllAlbum>();
+    public string[] genreIdList { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        genres = (await _genreServices.GetAllGenreAsync()).ToList();
+        albums = (await _albumServices.GetAllAlbumAsync());
+    }
+
+    protected async void Create()
+    {
+        var id = await _trackServices.CreateTrackAsync(trackCreate);
+        if (id > 0)
+        {
+            await js.InvokeAsync<bool>("createdAlert");
+            _nav.NavigateTo($"/trackpages/trackviewpage/{id}");
+        }
+    }
+    protected void Cancel()
+    {
+        _nav.NavigateTo("/trackpages/trackviewallpage");
+    }
+}
