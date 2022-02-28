@@ -9,7 +9,11 @@ namespace SongsTrack.Server.Extensions
 {
     public static class ApplicationServiceExtensions
     {
- 
+        /// <summary>
+        /// This is extension method of IServiceCollection which add required configuration and also help to make Program.cs clean.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns services></returns>
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IRepository<Album>, AlbumRepo>();
