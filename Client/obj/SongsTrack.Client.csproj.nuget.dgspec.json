@@ -22,6 +22,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\prajwal.bhandari\\local-nuget-feed": {},
+          "http://plugin.cedargate.com/artifactory/api/nuget/v3/cgt-nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -106,6 +108,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\prajwal.bhandari\\local-nuget-feed": {},
+          "http://plugin.cedargate.com/artifactory/api/nuget/v3/cgt-nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
