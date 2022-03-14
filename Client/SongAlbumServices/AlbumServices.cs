@@ -14,7 +14,11 @@ namespace SongsTrack.Client.SongAlbumServices
         public async Task<int> CreateAlbumAsync(CreateAlbum createAlbum)
         {
             var response = await httpClient.PostAsJsonAsync<CreateAlbum>("api/album/create", createAlbum);
-            return await response.Content.ReadFromJsonAsync<int>();
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<int>();
+            }
+            return 0;
         }
 
         public async Task<bool> DeleteAlbumAsync(int id)

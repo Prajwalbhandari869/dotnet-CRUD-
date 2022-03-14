@@ -16,5 +16,6 @@ builder.Services.AddScoped<IGenreServices, GenreServices>();
 builder.Services.AddScoped<IAlbumServices, AlbumServices>();
 builder.Services.AddScoped<IArtistServices, ArtistServices>();
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddTelerikBlazor();
 
 await builder.Build().RunAsync();

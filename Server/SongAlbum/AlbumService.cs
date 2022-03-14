@@ -10,7 +10,7 @@ namespace SongsTrack.Server.SongAlbum
         private readonly IRepository<Album> _repository;
         private readonly IMapper _mapper;
 
-        public AlbumService(IRepository<Album> repository,IMapper mapper)
+        public AlbumService(IRepository<Album> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -20,7 +20,6 @@ namespace SongsTrack.Server.SongAlbum
             var album = _mapper.Map<Album>(createAlbum);
             if (!(await _repository.CheckAsync(album.Title)))
             {
-                album.Title = album.Title.ToLower();
                 album = await _repository.CreateAsync(album);
                 return album.Id;
             }
@@ -40,14 +39,22 @@ namespace SongsTrack.Server.SongAlbum
 
         public async Task<IEnumerable<ViewAllAlbum>> GetAllAlbumAsync()
         {
-           var albums = await _repository.GetAllAsync();
-           return _mapper.Map<ICollection<ViewAllAlbum>>(albums);
+            var albums = await _repository.GetAllAsync();
+            return _mapper.Map<ICollection<ViewAllAlbum>>(albums);
         }
 
-        public async Task UpdateAlbumAsync(UpdateAlbum updateAlbum)
+        public async Task<bool> UpdateAlbumAsync(UpdateAlbum updateAlbum)
         {
             var album = _mapper.Map<Album>(updateAlbum);
-            await _repository.UpdateAsync(album);
+            if (!(await _repository.CheckAsync(album.Title)) || await _repository.CheckAsync(album.Id, album.Title))
+            {
+                await _repository.UpdateAsync(album);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

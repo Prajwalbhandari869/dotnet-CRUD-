@@ -34,9 +34,8 @@ namespace SongsTrack.Server.SongAlbum
         }
         [HttpPut("update")]
         public async Task<bool> UpdateAlbumAsync(UpdateAlbum updateAlbum)
-        {
-            await _service.UpdateAlbumAsync(updateAlbum);
-            return true;
+        {            
+            return await _service.UpdateAlbumAsync(updateAlbum);
         }
         [HttpDelete("{id}")]
         public async Task<bool> DeleteAlbumAsync(int id)

@@ -12,3 +12,6 @@ C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository
 C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\ref\SongsTrack.Repository.dll
 C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\bin\Debug\net6.0\SongsTrack.Repository.runtimeconfig.json
 C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.genruntimeconfig.cache
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\bin\Debug\net6.0\SongsTrack.Shared.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\bin\Debug\net6.0\SongsTrack.Shared.pdb
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\SongsTrack.Repository\obj\Debug\net6.0\SongsTrack.Repository.csproj.CopyComplete

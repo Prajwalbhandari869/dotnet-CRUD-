@@ -92,3 +92,8 @@ C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6
 C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Syncfusion.Blazor.SplitButtons.dll
 C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Syncfusion.Blazor.Themes.dll
 C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Syncfusion.Licensing.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Telerik.DataSource.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Telerik.Documents.SpreadsheetStreaming.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Telerik.Recurrence.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Telerik.Blazor.dll
+C:\Users\prajwal.bhandari\Desktop\Projects\CRUD\SongsTrack\Server\bin\Debug\net6.0\Telerik.Zip.dll

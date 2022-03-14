@@ -10,13 +10,13 @@
 <div>
     <EditForm Model="@artist" OnValidSubmit="@Updateartist">
         <DataAnnotationsValidator />
-        <div>
-            <div>
-                <div class="form-group col-md-6">
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="form-group">
                     <label for="artistTitle"> artist Title </label>
-                    <InputText form="artistTitle" class="form-control" @bind-Value="@artist.Name" />
-                    <ValidationMessage For="@(() => artist.Name)" />
+                    <CustomInputText form="TrackTitle" class="form-control" @bind-Value="@artistUpdate.Name" />
                 </div>
+                <ValidationMessage For="@(() => artistUpdate.Name)" />
             </div>
         </div>
         <br />
@@ -34,22 +34,30 @@
 @code {
     [Parameter]
     public int Id { get; set; }
+    [CascadingParameter]
+    public Global Global { get; set; }
     ViewArtist artist = new ViewArtist();
     UpdateArtist artistUpdate = new UpdateArtist();
+    string name;
     protected override async Task OnInitializedAsync()
     {
         artist = await _artistServices.GetArtistAsync(Id);
+        artistUpdate.Id = artist.Id;
+        artistUpdate.Name = artist.Name;
+        name = artist.Name;
     }
     protected async void Updateartist()
     {
         var uId = artist.Id;
-        artistUpdate.Id = artist.Id;
-        artistUpdate.Name = artist.Name;
         var response = await _artistServices.UpdateArtistAsync(artistUpdate);
         if (response)
         {
             await js.InvokeVoidAsync("updated");
             _nav.NavigateTo($"/artistpages/artistviewpage/{uId}");
+        }
+        else
+        {
+            Global.Error($"Cannot change \"{name}\" to \"{artistUpdate.Name}\" as it already exist.");
         }
     }
     protected void Cancel(int id)

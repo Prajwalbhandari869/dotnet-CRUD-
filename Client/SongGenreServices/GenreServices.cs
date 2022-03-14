@@ -15,7 +15,11 @@ namespace SongsTrack.Client.SongGenreServices
         public async Task<int> CreateGenreAsync(CreateGenre createGenre)
         {
             var response = await httpClient.PostAsJsonAsync<CreateGenre>("api/genre/create", @createGenre);
-            return await response.Content.ReadFromJsonAsync<int>();
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<int>();
+            }
+            return 0;
         }
 
         public async Task<bool> DeleteGenreAsync(int id)

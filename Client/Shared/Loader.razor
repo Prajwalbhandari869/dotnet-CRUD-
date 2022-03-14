@@ -1,0 +1,18 @@
+﻿<TelerikLoaderContainer OverlayThemeColor="light"
+                        Visible="@(ViewLoader)"
+                        Text="@null" Class="initial-data-loader">
+    <Template>
+        <TelerikLoader Type="@LoaderType.InfiniteSpinner">
+        </TelerikLoader>
+    </Template>
+</TelerikLoaderContainer>
+
+@code{
+    public bool ViewLoader {get;set;}
+
+    public void ToggleLoader(bool flag)
+    {
+        ViewLoader = flag;
+        StateHasChanged();
+    }
+}

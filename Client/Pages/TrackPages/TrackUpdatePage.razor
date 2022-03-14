@@ -8,14 +8,16 @@
 <h3>TrackUpdates</h3>
 
 <div>
-    <EditForm Model="@track" OnValidSubmit="@UpdateTrack">
+    @*<EditForm Model="@track" OnValidSubmit="@UpdateTrack">
         <DataAnnotationsValidator />
         <div>
-            <div>
-                <div class="form-group col-md-6">
-                    <label for="TrackTitle"> Track Title </label>
-                    <InputText form="TrackTitle" class="form-control" @bind-Value="@track.Title" />
-                    <ValidationMessage For="@(() => track.Title)" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="TrackTitle"> Track Title </label>
+                        <CustomInputText form="TrackTitle" class="form-control" @bind-Value="@trackUpdate.Title" />
+                    </div>
+                    <ValidationMessage For="@(() => trackUpdate.Title)" />
                 </div>
             </div>
             <br />
@@ -23,17 +25,16 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="TrackRating"> Track Rating </label>
-                        <InputNumber form="TrackRating" type="number" class="form-control" min="1" max="5" @bind-Value="@track.Rating" />
+                        <InputNumber form="TrackRating" type="number" class="form-control" min="1" max="5" @bind-Value="@trackUpdate.Rating" />
                     </div>
-                    <ValidationMessage For="@(() => track.Rating)" />
+                    <ValidationMessage For="@(() => trackUpdate.Rating)" />
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="TrackLength">Track Length </label>
-                        <InputNumber form="TrackLength" type="number" class="form-control" min="0" @bind-Value="@track.Length" />
-
+                        <InputNumber form="TrackLength" type="number" class="form-control" min="0" @bind-Value="@trackUpdate.Length" />
                     </div>
-                    <ValidationMessage For="@(() => track.Length)" />
+                    <ValidationMessage For="@(() => trackUpdate.Length)" />
                 </div>
             </div>
             <br />
@@ -41,28 +42,28 @@
                 <div class="col-md-3">
                     <div class="form-group" style="display:inline-flex">
                         <label style="padding-top:6px" for="TrackAlbum">Track Album :</label>
-                        <select style="width:150px" form="TrackAlbum" class="form-control" @bind="@track.AlbumId">
+                        <InputSelect style="width:150px" form="TrackAlbum" class="form-control" @bind-Value="@trackUpdate.AlbumId">
                             <option>Select</option>
                             @foreach (var album in albums)
                             {
                                 <option value="@album.Id">@album.Title</option>
                             }
-                        </select>
+                        </InputSelect>
                     </div>
-                    <ValidationMessage For="@(() => track.AlbumId)" />
+                    <ValidationMessage For="@(() => trackUpdate.AlbumId)" />
                 </div>
                 <div class="col-md-3">
                     <div class="form-group" style="display:inline-flex">
                         <label style="padding-top:6px" for="TrackGenre">Track Genre :</label>
-                        <select style="width:150px" form="TrackGenre" class="form-control" @bind="@track.GenreId">
+                        <InputSelect style="width:150px" form="TrackGenre" class="form-control" @bind-Value="@trackUpdate.GenreId">
                             <option>Select</option>
                             @foreach (var genre in genres)
                             {
                                 <option value="@genre.Id">@genre.Name</option>
                             }
-                        </select>
+                        </InputSelect>
                     </div>
-                    <ValidationMessage For="@(() => track.GenreId)" />
+                    <ValidationMessage For="@(() => trackUpdate.GenreId)" />
                 </div>
             </div>
         </div>
@@ -75,37 +76,124 @@
                 </div>
             </div>
         </div>
-
-    </EditForm>
+    </EditForm>*@
+    <TelerikForm Model="trackUpdate"  OnValidSubmit="@UpdateTheTrack" ValidationMessageType="@FormValidationMessageType.Tooltip">
+        <FormValidation>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </FormValidation>
+        <FormItems>
+            <div class="row">
+                <div class="col-md-6">
+                    <FormItem Field="@nameof(UpdateTrack.Title)">
+                        <Template>
+                            <label for="TrackTitle"> Track Title </label>
+                            <TelerikTextBox Id="TrackTitle" @bind-Value="@trackUpdate.Title" />
+                            <TelerikValidationMessage For="@(()=>trackUpdate.Title)" />
+                        </Template>
+                    </FormItem>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <FormItem LabelText="Rating" Field="@nameof(UpdateTrack.Rating)">
+                        <Template>
+                            <label for="TrackRating"> Track Rating </label>
+                            <TelerikNumericTextBox Id="TrackRating" Min="1" Max="5" @bind-Value="@trackUpdate.Rating" />
+                            <TelerikValidationMessage For="@(()=>trackUpdate.Rating)" />
+                        </Template>
+                    </FormItem>
+                </div>
+                <div class="col-md-3">
+                    <FormItem Field="@nameof(UpdateTrack.Length)">
+                        <Template>
+                            <label for="TrackLength">Track Length </label>
+                            <TelerikTimePicker Id="TrackLength" Max="@Max" Min="@Min" Format="mm:ss" @bind-Value="@trackUpdate.Length" Width="250px">
+                                <TimePickerSteps Minute="1" Second="1" />
+                            </TelerikTimePicker>
+                            <TelerikValidationMessage For="@(()=>trackUpdate.Length)" />
+                        </Template>
+                    </FormItem>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <FormItem Field="@nameof(UpdateTrack.AlbumId)">
+                        <Template>
+                            <label>Album</label>
+                            <TelerikDropDownList Data="@albums" DefaultText="Select a Category"
+                                                 TextField="@nameof(ViewAllAlbum.Title)"
+                                                 ValueField="@nameof(ViewAllAlbum.Id)"
+                                                 @bind-Value="trackUpdate.AlbumId">
+                            </TelerikDropDownList>
+                            <TelerikValidationMessage For="@(()=>trackUpdate.AlbumId)" />
+                        </Template>
+                    </FormItem>
+                </div>
+                <div class="col-md-3">
+                    <FormItem Field="@nameof(UpdateTrack.GenreId)">
+                        <Template>
+                            <label>Genre</label>
+                            <TelerikDropDownList Data="@genres" DefaultText="Select a Category"
+                                                 TextField="@nameof(ViewAllGenre.Name)"
+                                                 ValueField="@nameof(ViewAllGenre.Id)"
+                                                 @bind-Value="trackUpdate.GenreId">
+                            </TelerikDropDownList>
+                            <TelerikValidationMessage For="@(()=>trackUpdate.GenreId)" />
+                        </Template>
+                    </FormItem>
+                </div>
+            </div>
+        </FormItems>
+        <FormButtons>
+            <TelerikButton ButtonType="ButtonType.Submit">
+                Save
+            </TelerikButton>
+            <TelerikButton ButtonType="ButtonType.Button" @onclick="@(()=>Cancel(Id))">
+                Cancel
+            </TelerikButton>
+        </FormButtons>
+    </TelerikForm>
 </div>
 
 @code {
     [Parameter]
     public int Id { get; set; }
+    [CascadingParameter]
+    public Global Global { get; set; }
+    public DateTime Min = new DateTime(1900, 1, 1, 0, 0, 1);
+    public DateTime Max = new DateTime(1900, 1, 1, 0, 30, 0);
+
+
     ViewTrack track = new ViewTrack();
     UpdateTrack trackUpdate = new UpdateTrack();
     IEnumerable<ViewAllGenre> genres = new List<ViewAllGenre>();
     IEnumerable<ViewAllAlbum> albums = new List<ViewAllAlbum>();
+    string title;
     protected override async Task OnInitializedAsync()
     {
         track = await _trackServices.GetTrackAsync(Id);
-        genres = (await _genreServices.GetAllGenreAsync());
-        albums = (await _albumServices.GetAllAlbumAsync());
-    }
-    protected async void UpdateTrack()
-    {
-        var uId = track.Id;
         trackUpdate.Id = track.Id;
         trackUpdate.Title = track.Title;
         trackUpdate.Rating = track.Rating;
         trackUpdate.Length = track.Length;
         trackUpdate.AlbumId = track.AlbumId;
         trackUpdate.GenreId = track.GenreId;
+        genres = (await _genreServices.GetAllGenreAsync());
+        albums = (await _albumServices.GetAllAlbumAsync());
+        title = track.Title;
+    }
+    protected async void UpdateTheTrack()
+    {
+        var uId = track.Id;
         var response = await _trackServices.UpdateTrackAsync(trackUpdate);
         if (response)
         {
             await js.InvokeVoidAsync("updated");
             _nav.NavigateTo($"/trackpages/trackviewpage/{uId}");
+        }
+        else
+        {
+            Global.Error($"Cannot change \"{title}\" to \"{trackUpdate.Title}\" as it already exist.");
         }
     }
     protected void Cancel(int id)

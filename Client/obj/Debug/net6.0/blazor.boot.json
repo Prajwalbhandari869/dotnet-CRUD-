@@ -40,6 +40,11 @@
       "Syncfusion.Blazor.Themes.dll": "sha256-N\/OT68uAccbLDEkBATwuHocUH07GaNUsvtw09KsMJeM=",
       "Syncfusion.Licensing.dll": "sha256-QwlZ9sB886MhpSMWMtJl32rWMUnCpw8NfhppQ4MPuNg=",
       "System.IO.Pipelines.dll": "sha256-OXr1SqT\/FRQmnxVa6n811yUyJraU4tzQs5skNCiDmiM=",
+      "Telerik.DataSource.dll": "sha256-ZQcMJwNNcgsZVwPGc24q78ByFkaxopsQp2wrPuGjdck=",
+      "Telerik.Documents.SpreadsheetStreaming.dll": "sha256-7I92I6qgk66aNbpt0KlaWpCfVZ2d89nvIOyXKZ4hmko=",
+      "Telerik.Recurrence.dll": "sha256-RELFiLWDBd3XzYKVlqTErFJCQb0jfLPf4nXCdPw722A=",
+      "Telerik.Blazor.dll": "sha256-ZXxNumR7R1l7IC7a7TNF5iwbbcuOPTIJlmYDfPnTges=",
+      "Telerik.Zip.dll": "sha256-p5yWy2+7Nj3d2RQS4QzxMgI\/c152yuwvllNSN831dGQ=",
       "Microsoft.CSharp.dll": "sha256-3e+4x4IkiKdqz1QQU3q+mMbt7E75QRKVErtzQS\/H59M=",
       "Microsoft.VisualBasic.Core.dll": "sha256-nQnzzad55mvxYjgGOVHwVLsICUf8+AfrBKNGzOP6kfc=",
       "Microsoft.VisualBasic.dll": "sha256-z5gjK6zKIS5Z48h\/G7Ohr2yXEMTEYoAsMTbN4f\/ZHSI=",
@@ -206,15 +211,15 @@
       "mscorlib.dll": "sha256-c1dVVfosFaf5aiS3brr2amBi1Ue0kg6mqECzmCbGyfA=",
       "netstandard.dll": "sha256-+9Yr\/gSP3tCZAMbOdAcGhHGuMcyg\/AaxVKtt3tGsvao=",
       "System.Private.CoreLib.dll": "sha256-SnxOe5QK250duVAQOw0iWr1sODhUuVEUykExQyQ\/WSk=",
-      "SongsTrack.Shared.dll": "sha256-JESOf5f27ges28J+k2dXIAZNbzUH2ti+4+u8lWqlzVU=",
-      "SongsTrack.Client.dll": "sha256-Osnt0fXSrXeeh0AxJoTbnN3RfCLn1\/VKYGuDnLnLgJE="
+      "SongsTrack.Shared.dll": "sha256-OO5bu6p5zYel3JsUQaTrkZLgMj1vUtrCs11pse2FFeI=",
+      "SongsTrack.Client.dll": "sha256-v9a77CX5wJTLLxP5uqvsiNkjt\/BBXPRjUfeg8RgjRIY="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "SongsTrack.Shared.pdb": "sha256-MHadLStA0YcluVVZP4STd5TrhiNaWLCS0WeJ9IFl9ho=",
-      "SongsTrack.Client.pdb": "sha256-FapTEz+1I7HKN6mHJPmSjdVEzdkbRZR6WSviwCUYY4s="
+      "SongsTrack.Shared.pdb": "sha256-Fl6QOAXlFfS4dDkDqe+YXdgfZClqDtYdgHImp77rVKU=",
+      "SongsTrack.Client.pdb": "sha256-6u0ZCTSw+hgPIgtEyQlfyGmAX\/GkPv46QASF+DRrxkA="
     },
     "runtime": {
       "dotnet.6.0.2.ocfyqjcovt.js": "sha256-wbTVn69TU0+WI83iB+kky8tf\/BjZdYJeM0rUP96ur\/c=",

@@ -20,7 +20,6 @@ namespace SongsTrack.Server.SongGenre
             var id = await _service.CreateGenreAsync(createGenre);
             if (id > 0) return id;
             return BadRequest("Genre already exists");
-
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<ViewGenre>> GetGenreAsync(int id)
@@ -35,8 +34,7 @@ namespace SongsTrack.Server.SongGenre
         [HttpPut("update")]
         public async Task<bool> UpdateGenreAsync(UpdateGenre updateGenre)
         {
-            await _service.UpdateGenreAsync(updateGenre);
-            return true;
+            return await _service.UpdateGenreAsync(updateGenre); ;
         }
         [HttpDelete("{id}")]
         public async Task<bool> DeleteGenreAsync(int id)

@@ -1,5 +1,7 @@
-﻿using SongsTrack.Shared.Models.TrackModels;
+﻿using SongsTrack.Shared.Models;
+using SongsTrack.Shared.Models.TrackModels;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace SongsTrack.Client.SongTrackServices
 {
@@ -14,7 +16,11 @@ namespace SongsTrack.Client.SongTrackServices
         public async Task<int> CreateTrackAsync(CreateTrack trackCreate)
         {
             var response = await httpClient.PostAsJsonAsync<CreateTrack>("api/track/create", @trackCreate);
-            return await response.Content.ReadFromJsonAsync<int>();
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<int>();
+            }
+            return 0;
         }
 
         public async Task<bool> DeleteTrackAsync(int id)
@@ -25,7 +31,7 @@ namespace SongsTrack.Client.SongTrackServices
 
         public async Task<IEnumerable<ViewAllTrack>> GetAllTrackAsync()
         {
-            return await httpClient.GetFromJsonAsync<ViewAllTrack[]>("api/track/alltrack");
+            return await httpClient.GetFromJsonAsync<ViewAllTrack[]>("api/track/alltracks");
         }
 
         public async Task<ViewTrack> GetTrackAsync(int id)
@@ -33,6 +39,14 @@ namespace SongsTrack.Client.SongTrackServices
             return await httpClient.GetFromJsonAsync<ViewTrack>($"api/track/{id}");
         }
 
+        public async Task<Data<ViewAllTrack>> GetTracksAsync(PageDetails pageDetails)
+        {
+            var detailsString = $"api/track/tracks?PageNumber={pageDetails.PageNumber}&PageSize={pageDetails.PageSize}" +
+                                $"&SortBy={pageDetails.SortBy}&SortingDirection={pageDetails.SortingDirection}" +
+                                $"&Search={pageDetails.Search}";
+            var response = await httpClient.GetFromJsonAsync<Data<ViewAllTrack>>(detailsString);
+            return response;
+        }
 
         public async Task<bool> UpdateTrackAsync(UpdateTrack trackUpdate)
         {

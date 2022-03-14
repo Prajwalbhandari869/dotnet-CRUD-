@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SongsTrack.Shared.Models;
 using SongsTrack.Shared.Models.TrackModels;
 
 namespace SongsTrack.Server.SongTrack
@@ -26,17 +27,21 @@ namespace SongsTrack.Server.SongTrack
         {
             return await _service.GetTrackAsync(id);
         }
-        [HttpGet("alltrack")]
+        [HttpGet("alltracks")]
         public async Task<ActionResult<IEnumerable<ViewAllTrack>>> GetAllTrackAsync()
         {
             var val = Ok(await _service.GetAllTrackAsync());
             return val;
         }
+        [HttpGet("tracks")]
+        public async Task<ActionResult<Data<ViewAllTrack>>> GetTrackAsync([FromQuery] PageDetails pageDetails)
+        {
+            return await _service.GetTrackAsync(pageDetails);
+        }
         [HttpPut("update")]
         public async Task<bool> UpdateTrackAsync(UpdateTrack updateTrack)
-        {
-            await _service.UpdateTrackAsync(updateTrack);
-            return true;
+        {            
+            return await _service.UpdateTrackAsync(updateTrack);
         }
         [HttpDelete("{id}")]
         public async Task<bool> DeleteTrackAsync(int id)

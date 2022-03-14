@@ -8,13 +8,15 @@
 @inject IJSRuntime js
 <h3>TrackCreate</h3>
 <div>
-    <EditForm Model="@trackCreate" OnValidSubmit="@Create">
+    @*<EditForm Model="@trackCreate" OnValidSubmit="@Create">
         <DataAnnotationsValidator />
         <div>
-            <div>
-                <div class="form-group col-md-6">
-                    <label for="TrackTitle"> Track Title </label>
-                    <InputText form="TrackTitle" class="form-control" @bind-Value="@trackCreate.Title" />
+            <div class="row">
+                <div class=" col-md-6">
+                    <div class="form-group">
+                        <label for="TrackTitle"> Track Title </label>
+                        <CustomInputText form="TrackTitle" class="form-control" @bind-Value="@trackCreate.Title" />
+                    </div>
                     <ValidationMessage For="@(() => trackCreate.Title)" />
                 </div>
             </div>
@@ -31,7 +33,9 @@
                     <div class="form-group">
                         <label for="TrackLength">Track Length </label>
                         <InputNumber form="TrackLength" type="number" class="form-control" min="0" @bind-Value="@trackCreate.Length" />
-
+                        <TelerikTimePicker class="form-control" Max="@Max" Min="@Min" Format="mm:ss" @bind-Value="@trackCreate.Length" Width="250px">
+                            <TimePickerSteps Minute="1" Second="1" />
+                        </TelerikTimePicker>
                     </div>
                     <ValidationMessage For="@(() => trackCreate.Length)" />
                 </div>
@@ -41,28 +45,28 @@
                 <div class="col-md-3">
                     <div class="form-group" style="display:inline-flex">
                         <label style="padding-top:6px" for="TrackAlbum">Track Album :</label>
-                        <select style="width:150px" form="TrackAlbum" class="form-control" @bind="@trackCreate.AlbumId" @bind:event="oninput">
+                        <InputSelect style="width:150px" form="TrackAlbum" class="form-control" @bind-Value="@trackCreate.AlbumId">
                             <option>Select</option>
                             @foreach (var album in albums)
                             {
                                 <option value="@album.Id">@album.Title</option>
                             }
-                        </select>
+                        </InputSelect>
                     </div>
                     <ValidationMessage For="@(() => trackCreate.AlbumId)" />
                 </div>
                 <div class="col-md-3">
                     <div class="form-group" style="display:inline-flex">
                         <label style="padding-top:6px" for="TrackGenre">Track Genre :</label>
-                        <select style="width:150px" form="TrackGenre" class="form-control" @bind="@trackCreate.GenreId" @bind:event="oninput">
+                        <InputSelect style="width:150px" form="TrackGenre" class="form-control" @bind-Value="@trackCreate.GenreId">
                             <option>Select</option>
                             @foreach (var genre in genres)
                             {
                                 <option value="@genre.Id">@genre.Name</option>
                             }
-                        </select>
+                        </InputSelect>
                     </div>
-                    <ValidationMessage For="@(() => trackCreate)" />
+                    <ValidationMessage For="@(() => trackCreate.GenreId)" />
                 </div>
             </div>
         </div>
@@ -75,14 +79,98 @@
                 </div>
             </div>
         </div>
-
-    </EditForm>
+    </EditForm>*@
+    <TelerikForm Model="trackCreate"  OnValidSubmit="@Create" ValidationMessageType="@FormValidationMessageType.Tooltip">
+        <FormValidation>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+        </FormValidation>
+        <FormItems>
+            <div class="row">
+                <div class="col-md-6">
+                    <FormItem Field="@nameof(CreateTrack.Title)">
+                        <Template>
+                            <label for="TrackTitle"> Track Title </label>
+                            <TelerikTextBox Id="TrackTitle" @bind-Value="@trackCreate.Title" />
+                            <TelerikValidationMessage For="@(()=>trackCreate.Title)" />
+                        </Template>
+                    </FormItem>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <FormItem LabelText="Rating" Field="@nameof(CreateTrack.Rating)">
+                        <Template>
+                            <label for="TrackRating"> Track Rating </label>
+                            <TelerikNumericTextBox Id="TrackRating" Min="1" Max="5" @bind-Value="@trackCreate.Rating" />
+                            <TelerikValidationMessage For="@(()=>trackCreate.Rating)" />
+                        </Template>
+                    </FormItem>
+                </div>
+                <div class="col-md-3">
+                    <FormItem Field="@nameof(CreateTrack.Length)">
+                        <Template>
+                            <label for="TrackLength">Track Length </label>
+                            <TelerikTimePicker Id="TrackLength" Max="@Max" Min="@Min" Format="mm:ss" @bind-Value="@trackCreate.Length" Width="250px">
+                                <TimePickerSteps Minute="1" Second="1" />
+                            </TelerikTimePicker>
+                            <TelerikValidationMessage For="@(()=>trackCreate.Length)" />
+                        </Template>
+                    </FormItem>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <FormItem Field="@nameof(CreateTrack.AlbumId)">
+                        <Template>
+                            <label>Album</label>
+                            <TelerikDropDownList Data="@albums" DefaultText="Select a Category"
+                                                 TextField="@nameof(ViewAllAlbum.Title)"
+                                                 ValueField="@nameof(ViewAllAlbum.Id)"
+                                                 @bind-Value="trackCreate.AlbumId">
+                            </TelerikDropDownList>
+                            <TelerikValidationMessage For="@(()=>trackCreate.AlbumId)" />
+                        </Template>
+                    </FormItem>
+                </div>
+                <div class="col-md-3">
+                    <FormItem Field="@nameof(CreateTrack.GenreId)">
+                        <Template>
+                            <label>Genre</label>
+                            <TelerikDropDownList Data="@genres" DefaultText="Select a Category"
+                                                 TextField="@nameof(ViewAllGenre.Name)"
+                                                 ValueField="@nameof(ViewAllGenre.Id)"
+                                                 @bind-Value="trackCreate.GenreId">
+                            </TelerikDropDownList>
+                            <TelerikValidationMessage For="@(()=>trackCreate.GenreId)" />
+                        </Template>
+                    </FormItem>
+                </div>
+            </div>
+        </FormItems>
+        <FormButtons>
+            <TelerikButton ButtonType="ButtonType.Submit">
+                Save
+            </TelerikButton>
+            <TelerikButton ButtonType="ButtonType.Button" @onclick="@Cancel">
+                Cancel
+            </TelerikButton>
+        </FormButtons>
+    </TelerikForm>
 </div>
 
 @code {
+    [CascadingParameter]
+    public Global Global { get; set; }
+
+    public DateTime Min = new DateTime(1900, 1, 1, 0, 0, 1);
+    public DateTime Max = new DateTime(1900, 1, 1, 0, 30, 0);
+
     CreateTrack trackCreate = new CreateTrack();
     IEnumerable<ViewAllGenre> genres = new List<ViewAllGenre>();
     IEnumerable<ViewAllAlbum> albums = new List<ViewAllAlbum>();
+
+    public TimeOnly selectedTime { get; set; }
+
     public string[] genreIdList { get; set; }
     protected override async Task OnInitializedAsync()
     {
@@ -97,6 +185,10 @@
         {
             await js.InvokeAsync<bool>("createdAlert");
             _nav.NavigateTo($"/trackpages/trackviewpage/{id}");
+        }
+        else
+        {
+            Global.Error($"Track of title \"{trackCreate.Title}\" already exists.");
         }
     }
     protected void Cancel()

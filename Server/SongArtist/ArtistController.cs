@@ -42,8 +42,7 @@ namespace SongsTrack.Server.SongArtist
         [HttpPut("update")]
         public async Task<bool> UpdateArtistAsync(UpdateArtist updateArtist)
         {
-            await _service.UpdateArtistAsync(updateArtist);
-            return true;
+            return await _service.UpdateArtistAsync(updateArtist);
         }
     }
 }

@@ -90,8 +90,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhY2tQYWdlc1xUcmFja1ZpZXdQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/CustomInputText.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEN1c3RvbUlucHV0VGV4dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/Global.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEdsb2JhbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/Loader.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvYWRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/TelerikLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRlbGVyaWtMYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/Shared/Toast.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRvYXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/prajwal.bhandari/Desktop/Projects/CRUD/SongsTrack/Client/_Imports.razor]

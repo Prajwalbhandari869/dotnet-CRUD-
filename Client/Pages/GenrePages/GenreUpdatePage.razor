@@ -9,11 +9,13 @@
     <EditForm Model="@genre" OnValidSubmit="@Updategenre">
         <DataAnnotationsValidator />
         <div>
-            <div>
-                <div class="form-group col-md-6">
-                    <label for="genreTitle">Genre Name</label>
-                    <InputText form="genreTitle" class="form-control" @bind-Value="@genre.Name" />
-                    <ValidationMessage For="@(() => genre.Name)" />
+            <div class="row">
+                <div class=" col-md-6">
+                    <div class="form-group">
+                        <label for="genreTitle">Genre Name</label>
+                        <CustomInputText form="TrackTitle" class="form-control" @bind-Value="@updateGenre.Name" />
+                    </div>
+                    <ValidationMessage For="@(() => updateGenre.Name)" />
                 </div>
             </div>
         </div>
@@ -33,22 +35,30 @@
 @code {
     [Parameter]
     public int Id { get; set; }
+    [CascadingParameter]
+    public Global Global { get; set; }
     ViewGenre genre = new ViewGenre();
+    string name;
     UpdateGenre updateGenre = new UpdateGenre();
     protected override async Task OnInitializedAsync()
     {
         genre = await _genreServices.GetGenreAsync(Id);
+        updateGenre.Id = genre.Id;
+        updateGenre.Name = genre.Name;
+        name = genre.Name;
     }
     protected async void Updategenre()
     {
         var uId = genre.Id;
-        updateGenre.Id = genre.Id;
-        updateGenre.Name = genre.Name;
         var response = await _genreServices.UpdateGenreAsync(updateGenre);
         if (response)
         {
             await js.InvokeVoidAsync("updated");
             _nav.NavigateTo($"/genrepages/genreviewpage/{uId}");
+        }
+        else
+        {
+            Global.Error($"Cannot change \"{name}\" to \"{updateGenre.Name}\" as it already exist.");
         }
     }
     protected void Cancel(int id)

@@ -28,7 +28,7 @@
                         }
                     }
                 </li>
-                <li>Length : @timeStr</li>
+                <li>Length : @track.Length.ToString("mm:ss")</li>
                 <li>Album  : @track.AlbumTitle</li>                
                 <li>Genre  : @track.GenreName</li>
                 <li>Artist : @artist.Name</li>
@@ -47,14 +47,11 @@
     public int Id { get; set; }
     ViewArtist artist = new ViewArtist();
     ViewTrack track = new ViewTrack();
-    string timeStr;
     int count = 0;
     protected override async Task OnInitializedAsync()
     {
         track = await _trackServices.GetTrackAsync(Id);
         artist = await _artistServices.GetArtistAsync(track.AlbumArtistId);
-        TimeSpan time = TimeSpan.FromSeconds(@track.Length);
-        timeStr = time.ToString();
         count = track.Rating;
     }
     void GoBackToTracks()

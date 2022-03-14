@@ -43,10 +43,18 @@ namespace SongsTrack.Server.SongArtist
             return _mapper.Map<ViewArtist>(artist);
         }
 
-        public async Task UpdateArtistAsync(UpdateArtist updateArtist)
+        public async Task<bool> UpdateArtistAsync(UpdateArtist updateArtist)
         {
             var artist = _mapper.Map<Artist>(updateArtist);
-            await _repository.UpdateAsync(artist);
+            if (!(await _repository.CheckAsync(artist.Name)) || await _repository.CheckAsync(artist.Id, artist.Name))
+            {
+                await _repository.UpdateAsync(artist);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

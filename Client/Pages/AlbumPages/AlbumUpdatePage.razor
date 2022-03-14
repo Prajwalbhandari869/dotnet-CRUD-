@@ -10,11 +10,13 @@
     <EditForm Model="@album" OnValidSubmit="@Updatealbum">
         <DataAnnotationsValidator />
         <div>
-            <div>
-                <div class="form-group col-md-6">
-                    <label for="albumTitle"> Album Title </label>
-                    <InputText form="albumTitle" class="form-control" @bind-Value="@album.Title" />
-                    <ValidationMessage For="@(() => album.Title)" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="albumTitle"> Album Title </label>
+                        <CustomInputText form="AlbumTitle" class="form-control" @bind-Value="@albumUpdate.Title" />
+                    </div>
+                    <ValidationMessage For="@(() => albumUpdate.Title)" />
                 </div>
             </div>
             <br />
@@ -22,13 +24,20 @@
                 <div class="col-md-3">
                     <div class="form-group" style="display:inline-flex">
                         <label style="padding-top:6px" for="albumAlbum">album Album :</label>
-                        <select style="width:150px" form="albumAlbum" class="form-control" @bind="@album.ArtistId">
+                        @*<select style="width:150px" form="albumAlbum" class="form-control" @bind="@albumUpdate.ArtistId">
                             <option>Select</option>
                             @foreach (var artist in artists)
                             {
                                 <option value="@artist.Id">@artist.Name</option>
                             }
-                        </select>
+                        </select>*@
+                        <InputSelect style="width:150px" form="albumAlbum" class="form-control" @bind-Value="@albumUpdate.ArtistId">
+                            <option>Select</option>
+                            @foreach (var artist in artists)
+                            {
+                                 <option value="@artist.Id">@artist.Name</option>
+                            }
+                        </InputSelect>
                     </div>
                     <ValidationMessage For="@(() => album.ArtistId)" />
                 </div>
@@ -50,25 +59,33 @@
 @code {
     [Parameter]
     public int Id { get; set; }
+    [CascadingParameter]
+    public Global Global { get; set; }
     ViewAlbum album = new ViewAlbum();
     UpdateAlbum albumUpdate = new UpdateAlbum();
     IEnumerable<ViewAllArtist> artists = new List<ViewAllArtist>();
+    string title;
     protected override async Task OnInitializedAsync()
     {
         album = await _albumServices.GetAlbumAsync(Id);
         artists = (await _artistServices.GetAllArtistAsync());
+        albumUpdate.Id = album.Id;
+        albumUpdate.Title = album.Title;
+        albumUpdate.ArtistId = album.ArtistId;
+        title = album.Title;
     }
     protected async void Updatealbum()
     {
         var uId = album.Id;
-        albumUpdate.Id = album.Id;
-        albumUpdate.Title = album.Title;
-        albumUpdate.ArtistId = album.ArtistId;
         var response = await _albumServices.UpdateAlbumAsync(albumUpdate);
         if (response)
         {
             await js.InvokeVoidAsync("updated");
             _nav.NavigateTo($"/albumpages/albumviewpage/{uId}");
+        }
+        else
+        {
+            Global.Error($"Cannot change \"{title}\" to \"{albumUpdate.Title}\" as it already exist.");
         }
     }
     protected void Cancel(int id)

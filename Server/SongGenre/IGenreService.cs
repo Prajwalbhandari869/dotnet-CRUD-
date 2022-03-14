@@ -7,7 +7,7 @@ namespace SongsTrack.Server.SongGenre
         Task<int> CreateGenreAsync(CreateGenre createGenre);
         Task<IEnumerable<ViewAllGenre>> GetAllGenreAsync();
         Task<ViewGenre> GetGenreAsync(int id);
-        Task UpdateGenreAsync(UpdateGenre updateGenre);
+        Task<bool> UpdateGenreAsync(UpdateGenre updateGenre);
         Task DeleteGenreAsync(int id);
     }
 }

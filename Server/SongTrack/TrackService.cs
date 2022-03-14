@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SongsTrack.Repository.Entities;
 using SongsTrack.Repository.Repositories;
+using SongsTrack.Shared.Models;
 using SongsTrack.Shared.Models.TrackModels;
 
 namespace SongsTrack.Server.SongTrack
@@ -43,10 +45,60 @@ namespace SongsTrack.Server.SongTrack
             return _mapper.Map<ViewTrack>(track);
         }
 
-        public async Task UpdateTrackAsync(UpdateTrack updateTrack)
+        public Task<Data<ViewAllTrack>> GetTrackAsync(PageDetails pageDetails)
+        {
+            Data<ViewAllTrack> data = new Data<ViewAllTrack>();
+            var tracks = _repository.GetCurrentAsync().ToList();
+            data.TotalItemCount = tracks.Count();
+            tracks = tracks.Where(s => string.IsNullOrEmpty(pageDetails.Search) || s.Title.Contains(pageDetails.Search)).ToList();
+            if (!string.IsNullOrEmpty(pageDetails.SortBy))
+            {
+                switch (pageDetails.SortBy)
+                {
+                    case "Rating":
+                        tracks = pageDetails.SortingDirection == 0 ?
+                            tracks.OrderBy(x => x.Rating).ToList() :
+                            tracks.OrderByDescending(x => x.Rating).ToList();
+                        break;
+                    case "Length":
+                        tracks = pageDetails.SortingDirection == 0 ?
+                            tracks.OrderBy(l => l.Length).ToList() :
+                            tracks.OrderByDescending(l => l.Length).ToList();
+                        break;
+                    case "Album":
+                        tracks = pageDetails.SortingDirection == 0 ?
+                            tracks.OrderBy(a => a.Album.Title).ToList() :
+                            tracks.OrderByDescending(a => a.Album.Title).ToList();
+                        break;
+                    case "Genre":
+                        tracks = pageDetails.SortingDirection == 0 ?
+                            tracks.OrderBy(g => g.Genre.Name).ToList() :
+                            tracks.OrderByDescending(g => g.Genre.Name).ToList();
+                        break;
+                    default:
+                        tracks = pageDetails.SortingDirection == 0 ?
+                            tracks.OrderBy(x => x.Title).ToList() :
+                            tracks.OrderByDescending(x => x.Title).ToList();
+                        break;
+                }
+            }
+            var tracksData = tracks.Skip((pageDetails.PageNumber - 1) * pageDetails.PageSize).Take(pageDetails.PageSize);
+            data.CurrentPageData = _mapper.Map<ViewAllTrack[]>(tracksData);
+            return Task.FromResult(data);
+        }
+
+        public async Task<bool> UpdateTrackAsync(UpdateTrack updateTrack)
         {
             var track = _mapper.Map<Track>(updateTrack);
-            await _repository.UpdateAsync(track);
+            if (!(await _repository.CheckAsync(track.Title)) || await _repository.CheckAsync(track.Id, track.Title))
+            {
+                await _repository.UpdateAsync(track);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SongsTrack.Shared.Models.TrackModels;
+﻿using SongsTrack.Shared.Models;
+using SongsTrack.Shared.Models.TrackModels;
 
 namespace SongsTrack.Server.SongTrack
 {
@@ -6,8 +7,9 @@ namespace SongsTrack.Server.SongTrack
     {
         Task<int> CreateTrackAsync(CreateTrack trackCreate);
         Task<IEnumerable<ViewAllTrack>> GetAllTrackAsync();
+        Task<Data<ViewAllTrack>> GetTrackAsync(PageDetails pageDetails);
         Task<ViewTrack> GetTrackAsync(int id);
-        Task UpdateTrackAsync(UpdateTrack updateTrack);
+        Task<bool> UpdateTrackAsync(UpdateTrack updateTrack);
         Task DeleteTrackAsync(int id);
     }
 }

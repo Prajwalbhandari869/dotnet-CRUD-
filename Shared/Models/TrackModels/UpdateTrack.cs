@@ -15,8 +15,8 @@ namespace SongsTrack.Shared.Models.TrackModels
         public string Title { get; set; }
         [Range(1, 5, ErrorMessage = "Rating Cannot be less then 1")]
         public int Rating { get; set; }
-        [Range(1, 1000, ErrorMessage = "Length Cannot be less then 1")]
-        public int Length { get; set; }
+        //[Range(typeof(DateTime), , 1000, ErrorMessage = "Length Cannot be less then 1")]
+        public DateTime Length { get; set; } 
         [Range(1, int.MaxValue, ErrorMessage = "Please Select From DropDown")]
         public int AlbumId { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Please Select From DropDown")]

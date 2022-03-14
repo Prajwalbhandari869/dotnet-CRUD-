@@ -43,10 +43,18 @@ namespace SongsTrack.Server.SongGenre
             return _mapper.Map<ViewGenre>(genre);
         }
 
-        public async Task UpdateGenreAsync(UpdateGenre updateGenre)
+        public async Task<bool> UpdateGenreAsync(UpdateGenre updateGenre)
         {
             var genre = _mapper.Map<Genre>(updateGenre);
-            await _repository.UpdateAsync(genre);
+            if (!(await _repository.CheckAsync(genre.Name)) || await _repository.CheckAsync(genre.Id, genre.Name))
+            {
+                await _repository.UpdateAsync(genre);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

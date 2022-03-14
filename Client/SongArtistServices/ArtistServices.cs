@@ -15,7 +15,11 @@ namespace SongsTrack.Client.SongArtistServices
         public async Task<int> CreateArtistAsync(CreateArtist createArtist)
         {
             var response = await httpClient.PostAsJsonAsync<CreateArtist>("api/artist/create", @createArtist);
-            return await response.Content.ReadFromJsonAsync<int>();
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<int>();
+            }
+            return 0;
         }
 
         public async Task<bool> DeleteArtistAsync(int id)

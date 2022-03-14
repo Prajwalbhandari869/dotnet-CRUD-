@@ -16,7 +16,7 @@ namespace SongsTrack.Repository.Entities
         [Range(1, 5)]
         public int Rating { get; set; }
         [Required]
-        public int Length { get; set; }
+        public DateTime Length { get; set; } 
         public Album Album { get; set; }
         public int AlbumId { get; set; }
         public Genre Genre { get; set; }

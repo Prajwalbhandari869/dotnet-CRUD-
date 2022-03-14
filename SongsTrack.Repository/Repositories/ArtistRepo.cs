@@ -23,6 +23,11 @@ namespace SongsTrack.Repository.Repositories
             return await _context.Artists.AnyAsync(x => x.Name == titleOrName.ToLower());
         }
 
+        public async Task<bool> CheckAsync(int id, string titleOrName)
+        {
+            return await _context.Artists.AnyAsync(x => x.Name == titleOrName.ToLower() && x.Id == id);
+        }
+
         public async Task<Artist> CreateAsync(Artist entity)
         {
             await _context.Artists.AddAsync(entity);
@@ -50,6 +55,11 @@ namespace SongsTrack.Repository.Repositories
             return await _context.Artists
                .Include(a=> a.Albums)
                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public IQueryable<Artist> GetCurrentAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task UpdateAsync(Artist entity)

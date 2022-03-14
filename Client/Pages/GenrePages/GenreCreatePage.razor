@@ -8,10 +8,12 @@
     <EditForm Model="@genreCreate" OnValidSubmit="@Create">
         <DataAnnotationsValidator />
         <div>
-            <div>
-                <div class="form-group col-md-6">
-                    <label for="genreTitle"> Genre Title </label>
-                    <InputText form="genreTitle" class="form-control" @bind-Value="@genreCreate.Name" />
+            <div class="row">
+                <div class=" col-md-6">
+                    <div class="form-group">
+                        <label for="genreTitle"> Genre Title </label>
+                        <CustomInputText form="genreTitle" class="form-control" @bind-Value="@genreCreate.Name" />
+                    </div>
                     <ValidationMessage For="@(() => genreCreate.Name)" />
                 </div>
             </div>
@@ -27,22 +29,50 @@
         </div>
 
     </EditForm>
+    <TelerikButton OnClick="@AddNotification">Add a basic notification</TelerikButton>
+
+    <TelerikNotification @ref="@NotificationReference" Class="MyTelerikNotification"></TelerikNotification>
 </div>
 
 @code {
+    [CascadingParameter]
+    public Global Global { get; set; }
     CreateGenre genreCreate = new CreateGenre();
+    public TelerikNotification NotificationReference { get; set; }
+
+    public void AddNotification()
+    {
+        NotificationReference.Show(new NotificationModel()
+            {
+                Text = "Auto Closable Notification",
+                ThemeColor = ThemeConstants.Notification.ThemeColor.Primary
+            });
+    }
 
     protected async void Create()
     {
         var id = await _genreServices.CreateGenreAsync(genreCreate);
-        if (id>0)
+        if (id > 0)
         {
             await js.InvokeAsync<bool>("createdAlert");
             _nav.NavigateTo($"/genrepages/genreviewpage/{id}");
-        }        
+        }
+        else
+        {
+            Global.Error($"Genre of name \"{genreCreate.Name}\" already exists.");
+        }
     }
     protected void Cancel()
     {
         _nav.NavigateTo("/genrepages/genreviewallpage");
     }
 }
+<style>
+    .MyTelerikNotification .k-notification-container .k-notification-wrap {
+        width: 300px;
+        height: 50px;
+        font-size: 1.5em;
+        text-align: center;
+        align-items: center;
+    }
+</style>

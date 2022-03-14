@@ -6,7 +6,7 @@ namespace SongsTrack.Server.Middleware
 {
     public class ExceptionMiddleware
     {
-        private readonly RequestDelegate _request;
+        private readonly RequestDelegate _next;
         private readonly IHostEnvironment _env;
         private readonly ILogger<ExceptionMiddleware> _logger;
 
@@ -19,9 +19,9 @@ namespace SongsTrack.Server.Middleware
         /// <param name="request"></param>
         /// <param name="env"></param>
         /// <param name="logger"></param>
-        public ExceptionMiddleware(RequestDelegate request,IHostEnvironment env,ILogger<ExceptionMiddleware> logger)
+        public ExceptionMiddleware(RequestDelegate next,IHostEnvironment env,ILogger<ExceptionMiddleware> logger)
         {
-            _request = request;
+            _next = next;
             _env = env;
             _logger = logger;
         }
@@ -29,13 +29,13 @@ namespace SongsTrack.Server.Middleware
         {
             try
             {
-                await _request(context);
+                await _next(context);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex,ex.Message);
                 context.Response.ContentType = "application/json";
-                //context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 var response = _env.IsDevelopment()
                     ? new ApiException(context.Response.StatusCode,ex.Message,ex.StackTrace?.ToString())
                     : new ApiException(context.Response.StatusCode,"Internal Server Error");

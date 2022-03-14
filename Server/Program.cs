@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using SongsTrack.Repository.Data;
 using SongsTrack.Server.Extensions;
+using SongsTrack.Server.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,7 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
@@ -54,7 +56,7 @@ app.UseStaticFiles();
 /// It is a middleware which is used to match request to an endpoints.
 /// </summary>
 app.UseRouting();
-
+app.UseMiddleware<ExceptionMiddleware>();
 app.MapRazorPages();
 
 /// <summary>

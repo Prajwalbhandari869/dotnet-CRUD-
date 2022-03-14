@@ -7,7 +7,7 @@ namespace SongsTrack.Server.SongAlbum
         Task<int> CreateAlbumAsync(CreateAlbum createAlbum);
         Task<IEnumerable<ViewAllAlbum>> GetAllAlbumAsync();
         Task<ViewAlbum> GetAlbumAsync(int id);
-        Task UpdateAlbumAsync(UpdateAlbum updateAlbum);
+        Task<bool> UpdateAlbumAsync(UpdateAlbum updateAlbum);
         Task DeleteAlbumAsync(int id);
     }
 }

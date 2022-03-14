@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SongsTrack.Shared.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,11 @@ namespace SongsTrack.Repository.Repositories
     {
         Task<T> CreateAsync(T entity);
         Task<IEnumerable<T>> GetAllAsync();
+        IQueryable<T> GetCurrentAsync();
         Task<T> GetAsync(int id);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id);
         Task<bool> CheckAsync(string titleOrName);
+        Task<bool> CheckAsync(int id,string titleOrName);
     }
 }

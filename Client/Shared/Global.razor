@@ -1,0 +1,14 @@
+﻿<Loader @ref="Load" />
+<Toast @ref="Toastr" />
+@code {
+    Toast Toastr { get; set; }
+    Loader Load { get; set; }
+    public void Error(string Message)
+    {
+        Toastr.Error(Message);
+    }
+    public void Loader(bool Show)
+    {
+        Load.ToggleLoader(Show);
+    }
+}

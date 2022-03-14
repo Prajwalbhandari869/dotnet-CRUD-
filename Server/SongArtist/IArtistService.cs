@@ -7,7 +7,7 @@ namespace SongsTrack.Server.SongArtist
         Task<int> CreateArtistAsync(CreateArtist createArtist);
         Task<IEnumerable<ViewAllArtist>> GetAllArtistAsync();
         Task<ViewArtist> GetArtistAsync(int id);
-        Task UpdateArtistAsync(UpdateArtist updateArtist);
+        Task<bool> UpdateArtistAsync(UpdateArtist updateArtist);
         Task DeleteArtistAsync(int id);
     }
 }

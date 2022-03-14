@@ -1,0 +1,21 @@
+﻿<div class="content px-4">
+    <TelerikNotification @ref="@NotificationReference"
+                         HorizontalPosition="@NotificationHorizontalPosition.Right"
+                         VerticalPosition="@NotificationVerticalPosition.Bottom">
+    </TelerikNotification>
+</div>
+
+@code {
+    TelerikNotification NotificationReference { get; set; }
+
+    public void Error(string Message)
+    {
+        NotificationReference.Show(new NotificationModel()
+            {
+                Text = Message,
+                ThemeColor = "error",
+                Closable = true,
+                CloseAfter = 5000
+            });
+    }
+}
