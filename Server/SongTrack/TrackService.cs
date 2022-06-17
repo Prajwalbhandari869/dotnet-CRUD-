@@ -48,9 +48,9 @@ namespace SongsTrack.Server.SongTrack
         public Task<Data<ViewAllTrack>> GetTrackAsync(PageDetails pageDetails)
         {
             Data<ViewAllTrack> data = new Data<ViewAllTrack>();
-            var tracks = _repository.GetCurrentAsync().ToList();
-            data.TotalItemCount = tracks.Count();
+            var tracks = _repository.GetCurrentAsync().ToList();            
             tracks = tracks.Where(s => string.IsNullOrEmpty(pageDetails.Search) || s.Title.Contains(pageDetails.Search)).ToList();
+            data.TotalItemCount = tracks.Count();
             if (!string.IsNullOrEmpty(pageDetails.SortBy))
             {
                 switch (pageDetails.SortBy)

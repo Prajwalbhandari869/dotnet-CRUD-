@@ -212,14 +212,14 @@
       "netstandard.dll": "sha256-+9Yr\/gSP3tCZAMbOdAcGhHGuMcyg\/AaxVKtt3tGsvao=",
       "System.Private.CoreLib.dll": "sha256-SnxOe5QK250duVAQOw0iWr1sODhUuVEUykExQyQ\/WSk=",
       "SongsTrack.Shared.dll": "sha256-OO5bu6p5zYel3JsUQaTrkZLgMj1vUtrCs11pse2FFeI=",
-      "SongsTrack.Client.dll": "sha256-v9a77CX5wJTLLxP5uqvsiNkjt\/BBXPRjUfeg8RgjRIY="
+      "SongsTrack.Client.dll": "sha256-8X3XMZ2y14Bldm2cXStOm+Uu9E7CkLVaqBRbBd3llo0="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "SongsTrack.Shared.pdb": "sha256-Fl6QOAXlFfS4dDkDqe+YXdgfZClqDtYdgHImp77rVKU=",
-      "SongsTrack.Client.pdb": "sha256-6u0ZCTSw+hgPIgtEyQlfyGmAX\/GkPv46QASF+DRrxkA="
+      "SongsTrack.Client.pdb": "sha256-n++88APb+pTbgJJM41vXV+MNe\/jGepDarXMjJvXOBqc="
     },
     "runtime": {
       "dotnet.6.0.2.ocfyqjcovt.js": "sha256-wbTVn69TU0+WI83iB+kky8tf\/BjZdYJeM0rUP96ur\/c=",

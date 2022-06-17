@@ -7412,7 +7412,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\": {}
+    "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -7423,8 +7424,12 @@
       "packagesPath": "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\prajwal.bhandari\\Desktop\\Projects\\CRUD\\SongsTrack\\Client\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\prajwal.bhandari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7433,9 +7438,9 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Users\\prajwal.bhandari\\local-nuget-feed": {},
-        "http://plugin.cedargate.com/artifactory/api/nuget/v3/cgt-nuget": {},
         "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.telerik.com/v3/index.json": {}
+        "https://nuget.telerik.com/v3/index.json": {},
+        "https://plugin.cgt.us/artifactory/api/nuget/v3/cgt-nuget": {}
       },
       "frameworks": {
         "net6.0": {
@@ -7492,7 +7497,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[6.0.2, 6.0.2]"
+            "version": "[6.0.5, 6.0.5]"
           }
         ],
         "frameworkReferences": {
@@ -7500,7 +7505,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

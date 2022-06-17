@@ -7,3 +7,34 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+
+
+<h1>Counter</h1>
+
+<p>Current count:@currentCount</p>
+<button class="btn btn-primary"
+        @onclick="@IncrementCount">
+    Click me
+</button>
+<button class="btn btn-primary"
+        @onclick="@AutoIncrement">
+    AutoIncrement
+</button>
+
+@code {
+    int currentCount = 0;
+    void IncrementCount()
+    {
+        currentCount++;
+    }
+    private void AutoIncrement()
+    {
+        var timer = new Timer(
+        callback: (_) => { IncrementCount(); StateHasChanged(); },
+        state: false,
+        dueTime: TimeSpan.FromSeconds(1),
+        period: TimeSpan.FromSeconds(1)
+        );
+    }
+}

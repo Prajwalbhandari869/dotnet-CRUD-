@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "72DcF9SUE7+RDgn/USLcXc0WpjsUxWi784leBL+gj7iZRx0r4yj0MYNjhP2wdpI4mwytboTjKmFRmLPJbo6HnA==",
+  "dgSpecHash": "jg9OTiiC11HETLLKyWNpvjrlizIW3gAubvG85itKQqhtdGUkfZV7XfMGlyMOqe58GBl1HjJMa8LVvW3LV1WxjA==",
   "success": true,
   "projectFilePath": "C:\\Users\\prajwal.bhandari\\Desktop\\Projects\\CRUD\\SongsTrack\\Client\\SongsTrack.Client.csproj",
   "expectedPackageFiles": [
@@ -123,7 +123,7 @@
     "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\telerik.recurrence.trial\\0.2.0\\telerik.recurrence.trial.0.2.0.nupkg.sha512",
     "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\telerik.ui.for.blazor.trial\\3.1.0\\telerik.ui.for.blazor.trial.3.1.0.nupkg.sha512",
     "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\telerik.zip.trial\\2022.1.217\\telerik.zip.trial.2022.1.217.nupkg.sha512",
-    "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.2\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.2.nupkg.sha512"
+    "C:\\Users\\prajwal.bhandari\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.5\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.5.nupkg.sha512"
   ],
   "logs": []
 }

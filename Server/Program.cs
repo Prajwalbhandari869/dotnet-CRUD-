@@ -48,7 +48,7 @@ else
 /// It is a middleware that redirect HTTP requests to HTTPS
 /// This issue HTTP response codes redirecting from http to https.
 /// </summary>
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 

@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-6">
         <div style="display:inline-flex; margin-bottom:5px">
-            <div  style="margin-right:80px;">
+            <div style="margin-right:80px;">
                 <TelerikTextBox @bind-Value="@SearchTitle" PlaceHolder="Search by Title" Width="150px"></TelerikTextBox>
             </div>
             <div style="right:auto">
@@ -29,14 +29,6 @@
                      Height="280px" Reorderable="true"
                      Resizable="true" @bind-PageSize="@pageSize"
                      OnStateInit="@((GridStateEventArgs<ViewAllTrack> args) => OnStateInitHandler(args))">
-            @*<TelerikGrid Data="tracks"
-                @ref="@GridRef" OnRead="SetPageDetail"
-                Pageable="true" Sortable="true"
-                Resizable="true" Reorderable="true" @bind-PageSize="@pageSize">*@
-            @*<GridToolBar>
-                <span class="k-toolbar-spacer"></span>
-                <GridSearchBox />
-                </GridToolBar>*@
             <GridSettings>
                 <GridPagerSettings PageSizes="@PageSizes" />
             </GridSettings>
@@ -130,9 +122,6 @@
         data = await _trackServices.GetTracksAsync(pageDetails);
         args.Data = data.CurrentPageData;
         args.Total = data.TotalItemCount;
-        tracks = data.CurrentPageData;
-        TotalCount = data.TotalItemCount;
-
     }
 
     protected void AddTrack()
